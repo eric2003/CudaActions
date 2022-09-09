@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Cuda_Windows_CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "Windows Cuda Actions"
+    #runs-on: windows-latest
+    runs-on: ${{ matrix.os }}    
+    strategy:
+      matrix:
+        include:
+          # Windows2019 & VS 2019 supports 10.1+
+          - os: windows-2019
+            cuda: "11.3.0"
+            visual_studio: "Visual Studio 16 2019"
+    env:
+      build_dir: "build"
+      config: "Release"
+    steps:
+      - uses: actions/checkout@v2
+      - name: cmake version
+        shell: bash
+        run: cmake --version        
