@@ -29,8 +29,13 @@ jobs:
       config: "Release"
     steps:
       - uses: actions/checkout@v2
-      - uses: Jimver/cuda-toolkit@v0.2.8      
       - name: Download and Install MPI HDF5 CGNS METIS
+        run: |
+          cd ${{ github.workspace }}
+          ls
+        shell: pwsh    
+      - uses: Jimver/cuda-toolkit@v0.2.8      
+      - name: Install Toolkit
         id: cuda-toolkit
         with:
           cuda: ${{ matrix.cuda }}
@@ -38,9 +43,6 @@ jobs:
           ls $env:CUDA_PATH
           ls $env:CUDA_PATH\bin
           ls $env:CUDA_PATH\include            
-        #run: echo "Installed cuda version is: ${{steps.cuda-toolkit.outputs.cuda}}"
-        #run: echo "Cuda install location: ${{steps.cuda-toolkit.outputs.CUDA_PATH}}"
-        #run: nvcc -V       
         shell: pwsh
       - name: cmake version
         shell: bash
