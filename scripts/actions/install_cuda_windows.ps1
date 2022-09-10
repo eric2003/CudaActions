@@ -57,3 +57,16 @@ $CUDA_MINOR=$Matches.minor
 $CUDA_PATCH=$Matches.patch
 
 Write-Output "CUDA_VERSION_FULL $($CUDA_VERSION_FULL)"
+
+$CUDA_REPO_PKG_REMOTE="https://developer.download.nvidia.com/compute/cuda/11.4.0/network_installers/cuda_11.4.0_win10_network.exe"
+$CUDA_REPO_PKG_LOCAL="cuda_11.4.0_win10_network.exe"
+
+# Invoke silent install of CUDA (via network installer)
+Write-Output "Installing CUDA $($CUDA_VERSION_FULL). Subpackages $($CUDA_PACKAGES)"
+Start-Process -Wait -FilePath .\"$($CUDA_REPO_PKG_LOCAL)" -ArgumentList "-s $($CUDA_PACKAGES)"
+
+# Check the return status of the CUDA installer.
+if (!$?) {
+    Write-Output "Error: CUDA installer reported error. $($LASTEXITCODE)"
+    exit 1 
+}
