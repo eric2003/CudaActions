@@ -38,7 +38,7 @@ jobs:
         env: 
           cuda: ${{ matrix.cuda }}
           visual_studio: ${{ matrix.visual_studio }}
-        run:
+        run: |
           cd ${{ github.workspace }}
           ls
         shell: pwsh
