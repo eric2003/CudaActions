@@ -42,7 +42,6 @@ jobs:
           cd ${{ github.workspace }}
           ls
         shell: pwsh
-      shell: powershell
       - name: cmake version
         shell: bash
         run: cmake --version
