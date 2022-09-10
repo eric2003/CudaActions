@@ -34,6 +34,15 @@ jobs:
           cd ${{ github.workspace }}
           ls
         shell: pwsh
+      - name: Run OneFLOW CFD Tests
+        env: 
+          cuda: ${{ matrix.cuda }}
+          visual_studio: ${{ matrix.visual_studio }}
+        run:
+          cd ${{ github.workspace }}
+          ls
+        shell: pwsh
+      shell: powershell
       - name: cmake version
         shell: bash
         run: cmake --version
