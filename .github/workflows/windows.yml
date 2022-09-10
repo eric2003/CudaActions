@@ -29,6 +29,12 @@ jobs:
       config: "Release"
     steps:
       - uses: actions/checkout@v2
+      - name: Install CUDA
+        env: 
+          cuda: ${{ matrix.cuda }}
+          visual_studio: ${{ matrix.visual_studio }}
+        shell: powershell
+      run: .\scripts\actions\install_cuda_windows.ps1      
       - name: cmake version
         shell: bash
         run: cmake --version
