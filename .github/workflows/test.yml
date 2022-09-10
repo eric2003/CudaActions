@@ -33,10 +33,14 @@ jobs:
       - name: Download and Install MPI HDF5 CGNS METIS
         id: cuda-toolkit
         with:
-          cuda: ${{ matrix.cuda }}    
-      - run: echo "Installed cuda version is: ${{steps.cuda-toolkit.outputs.cuda}}"
-      - run: echo "Cuda install location: ${{steps.cuda-toolkit.outputs.CUDA_PATH}}"
-      - run: nvcc -V       
+          cuda: ${{ matrix.cuda }}
+        run: |
+          ls $env:CUDA_PATH
+          ls $env:CUDA_PATH\bin
+          ls $env:CUDA_PATH\include            
+        #run: echo "Installed cuda version is: ${{steps.cuda-toolkit.outputs.cuda}}"
+        #run: echo "Cuda install location: ${{steps.cuda-toolkit.outputs.CUDA_PATH}}"
+        #run: nvcc -V       
         shell: pwsh
       - name: cmake version
         shell: bash
