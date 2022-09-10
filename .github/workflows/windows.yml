@@ -39,8 +39,9 @@ jobs:
           cuda: ${{ matrix.cuda }}
           visual_studio: ${{ matrix.visual_studio }}
         run: |
-          cd ${{ github.workspace }}
-          ls
+          #cd ${{ github.workspace }}
+          #ls
+          .\scripts\actions\install_cuda_windows.ps1          
         shell: pwsh
       - name: cmake version
         shell: bash
